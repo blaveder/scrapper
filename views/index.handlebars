@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <h3 class="navbar-brand">Mongo Scraper</h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a id="home" class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="savedPage" class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <button id="scraperButton" class="btn btn-outline-success" type="button">Scrape New Articles</button>
+            <button id="clearButton" class="btn btn-outline-danger" type="button">Clear Articles</button>
+
+        </form>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div id="header" class="col-md-12">
+            <h1>Scraper of news stand</h1>
+        </div>
+    </div>
+
+    {{#each articles}}
+
+    <div id="headlines" class="row allHeadlines">
+        <div class="col-md-12">
+            <div class="card" id={{this.id}} style="width: 100%;">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <a target="_blank" href=https://www.nytimes.com{{this.url}}>Learn More bitches</a>
+                    <p class="card-text">{{this.summary}}
+                    </p>
+                    <a id="saveButton" data-id={{this.id}} href="" class="btn btn-danger saveButton hvr-pop">Save Article</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+
+
+</div>

@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Mongo Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a id="home" class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a id="savedPage" class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+        </ul>
+
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div id="header" class="col-md-12">
+            <h1>Mongo Scraper - NY Times Headlines</h1>
+        </div>
+    </div>
+
+    {{#each articles}} {{#if saved}}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" id={{this.id}} style="width: 100%;">
+                <img class="card-img-top" src="http://worldartsme.com/images/newspaper-wallpaper-clipart-1.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <a target="_blank" href=https://www.nytimes.com{{this.url}}>https://www.nytimes.com{{this.url}}</a>
+                    <p class="card-text">{{this.summary}}
+                    </p>
+                    <a data-id={{this.id}} href="/delete" class="btn btn-danger removeSaved hvr-float">Remove</a>
+
+                    <button type="button" class="btn btn-primary openNote hvr-float" data-toggle="modal" data-target="#exampleModal{{this._id}}">
+                        Notes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="noteAdded" id={{this.id}} class="input-group-text" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary hvr-float" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary saveNote hvr-float">Save Note</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}} {{/each}}
+
+
+
+
+</div>
